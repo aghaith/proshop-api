@@ -1,4 +1,5 @@
 import path from 'path'
+import cors from 'cors'
 import express from 'express'
 import dotenv from 'dotenv'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
@@ -16,6 +17,9 @@ connectDB()
 const app = express()
 
 app.use(express.json())
+
+app.use(cors());
+app.options('*', cors());
 
 app.use((req, res, next) => {
     console.log(req.originalUrl)
